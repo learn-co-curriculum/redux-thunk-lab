@@ -9,7 +9,7 @@ Who doesn't want to look at pictures of cats? Well, now you can look at up to 20
 
 ## Instructions
 
-We'll build out our app following the **container pattern**. We'll have one top-level component, `App`, that connects to the store and gets data from the state via `mapStateToProps`. `App` will render a child presentational component, `CatList`, which will recieve the list of cat pics from `App` and render them in a series of `<img>` tags.
+We'll build out our app following the **container pattern**. We'll have one top-level component, `App`, that connects to the store and gets data from the state via `mapStateToProps`. `App` will render a child presentational component, `CatList`, which will receive the list of cat pics from `App` and render them in a series of `<img>` tags.
 
 We'll be getting our cat pics from a real API! Sort of. We made a very special API just for you to use with this lab (aren't you so lucky). Clone down [this repo](https://github.com/learn-co-curriculum/cat-api), run `npm install` and `npm start`. If you point your browser to `http://localhost:4000/db` you should see a JSON collection of 20 cat image objects.
 
@@ -74,3 +74,5 @@ Once you successfully fetch cats, put them in state, grab them from state and pa
 ### The Presentational Component
 
 Your container component, `App`, should render the presentational component, `CatList`. `App` should pass `catPics` down to `CatList` as a prop. `CatList` should iterate over the cat pics and display each cat pic in an image URL. Remember to use debugger to take a look at the `catPics` collection and determine which property of each `catPic` object you will use to populate your `<img>` tag and render the image.
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/redux-thunk-lab'>Redux Thunk Lab</a> on Learn.co and start learning to code for free.</p>
