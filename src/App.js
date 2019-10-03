@@ -9,11 +9,20 @@ class App extends Component {
     this.props.fetchCats()
   }
   
+  handleLoading = () => {
+    console.log(this.props.loading)
+    if(this.props.loading) {
+      return <div>Loading...</div>
+    } else {
+      return <CatList catPics={this.props.catPics} />
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <h1>CatBook</h1>
-        <CatList catPics={this.props.catPics} />
+        {this.handleLoading()}
       </div>
     );
   }
@@ -21,7 +30,8 @@ class App extends Component {
 
 const mapDispatchToProps = state => {
   return {
-    catPics: state.cats
+    catPics: state.cats,
+    loading: state.loading
   }
 }
 
