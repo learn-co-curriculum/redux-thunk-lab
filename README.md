@@ -1,7 +1,7 @@
 # Async Redux Lab: Pictures of Cats
 
 Who doesn't want to look at pictures of cats? Well, now you can look at up to 20
-pictures of cats with our new React + Redux app. All you have to do is...build
+pictures of cats with our new React + Redux app. All you have to do is... build
 it yourself! In this lab, you are tasked with building out a React + Redux app
 that fetches data using Thunk. Since this is a pretty specific task, we'll walk
 through it a bit in this Readme. Let's get started! 
@@ -23,8 +23,9 @@ a series of `<img>` tags.
 We'll be getting our cat pics from a real API! Sort of. We made a very special
 API just for you to use with this lab (aren't you so lucky). We've got a GitHub
 repository set up with GitHub pages to deliver a JSON file. If you point your
-browser to [https://learn-co-curriculum.github.io/cat-api/cats.json][Static JSON] you should see a JSON collection of 20 cat image objects. Now that we have
-a source for the data, we'll need to set up Redux and Thunk.
+browser to [https://learn-co-curriculum.github.io/cat-api/cats.json][Static JSON] 
+you should see a JSON collection of 20 cat image objects. Now that we have a 
+source for the data, we'll need to set up Redux and Thunk.
 
 ### Part 1: Set Up the Store and Reducer and Action Creator
 
@@ -59,7 +60,7 @@ ReactDOM.render(
 ```
 
 This is the Redux configuration we've seen previously. To implement Thunk, we'll
-need to also import `applyMiddleware` from `redux` and `thunk` from
+also need to import `applyMiddleware` from `redux` and `thunk` from
 `redux-thunk` (package already included in `package.json`). We pass `thunk` into
 `applyMiddleware()`, and pass _that_ in as the second argument for
 `createStore`:
@@ -147,7 +148,8 @@ fetch('https://learn-co-curriculum.github.io/cat-api/cats.json').then(response =
 })
 ```
 
-Remember, we built the `catsReducer` to look for two action types. The first, `'LOADING_CATS'`, should be dispatched _before_ the `fetch()`
+Remember, we built the `catsReducer` to look for two action types. The first, 
+`'LOADING_CATS'`, should be dispatched _before_ the `fetch()`
 request is called. The other type, `'ADD_CATS'`, should be dispatched
 along with a payload of the cats JSON collection. Judging by the case
 for `'ADD_CATS'`:
@@ -219,9 +221,10 @@ We'll do this by first importing `connect` from `react-redux`, wrapping the
 function around `App` on the export line. Then, we'll write a `mapStateToProps()`
 helper function. This function will be passed into `connect`. `connect` calls
 this function, passing in the state from the Redux store. Any key/value pairs
-returned by `mapStateToProps()` will become props in the `App` component. We can
-use this set up to confirm Redux is correctly creating its initial state and
-that we're able to access that state in our React components.
+returned by `mapStateToProps()` will become props in the `App` component. Once 
+all this is set up, let's also add a `console.log` in the `render` method so we 
+can confirm Redux is correctly creating its initial state and that we're able 
+to access that state in our React components.
 
 ```js
 // src/App.js
@@ -252,8 +255,8 @@ export default connect(mapStateToProps)(App)
 ```
 
 Using the above code, you should see an empty array logged in the console when
-the app is launched. This is the empty `cats` array in our initial state, now mapped to
-`this.props.catPics` in `App`.
+the app is launched. This is the empty `cats` array in our initial state, which 
+has been mapped to `this.props.catPics` in `App`.
 
 #### Dispatching the `fetchCats` Action
 
@@ -273,9 +276,8 @@ get the cat pics.
 
 We need to define our `componentDidMount()` function so that it calls our
 `fetchCats()` action creator. We also need to write out a `mapDispatchToProps()`
-function to make `fetchCats()` available. We can then access the function as
-`this.props.fetchCats()` inside the component and call this when the component
-mounts:
+function so we can access the function as `this.props.fetchCats()` inside the 
+component:
 
 ```js
 // src/App.js
@@ -322,25 +324,19 @@ Notice that we still can call `dispatch` here, even though we're also calling
 `dispatch` in our action creator.
 
 > **Aside**: Why is `this.props.catPics` set to `[]` on the first two renders?
-The first render is the initial render, so an empty `catPics` array is always expected. The _second_
-render, however, occurs when we send our _first_ dispatch,
-`dispatch({type: 'LOADING_CATS'})`. If we logged `this.props.loading` instead of
-`catPics`, we would see the following:
+The first render is the initial render, so an empty `catPics` array is always 
+expected. The _second_ render, however, occurs when we send our _first_ dispatch,
+`dispatch({type: 'LOADING_CATS'})`, which happens before the fetch request is 
+executed. 
 
-```js
-false
-true
-false
-```
-
-Once you successfully fetch cats, put them in state, grab them from state and
-pass them to `App` under the `catPics` prop, you're ready to build the `CatList`
-component.
+So far, we have successfully fetched the cats and put them in state, then grabbed 
+them from state and passed them to the `App` component as `this.props.catPics`. 
+Now we're ready to build the `CatList` component.
 
 #### The Presentational Component
 
-We will leave the final task to you - building the `CatList` component. Your
-container component, `App`, should render the`CatList` component. `App` will
+We will leave the final task to you &mdash; building the `CatList` component. Your
+container component, `App`, should render the `CatList` component. `App` will
 pass `catPics` down to `CatList` as a prop. `CatList` should iterate over the
 cat pics and display each cat pic in an image URL. Remember to use `debugger` to
 take a look at the `catPics` collection and determine which property of each
@@ -352,10 +348,10 @@ In order to get the tests to pass, you will need to wrap your `<img>` tags in a
 
 With all tests passing, you should have a working example of a React + Redux +
 Thunk application. Of the two components, one is purely presentational, just like a
-regular React app. The other connects to Redux, but beyond that, it's not any
-different than a regular React + Redux app. Thunk lets us augment our action
-creators and handle our asynchronous requests without requiring any major
-changes to other parts of the application.
+regular React app. The other connects to Redux, it's not any different than a 
+regular React + Redux app. Thunk lets us augment our action creators and handle 
+our asynchronous requests without requiring any major changes to other parts of 
+the application.
 
 ## Bonus
 
@@ -365,8 +361,8 @@ have access to `this.props.loading` in your `App` component. If we log this
 value, we should see that it starts off `false`, then becomes `true` briefly
 before switching back to `false` again.
 
-While content is being fetched, it would be nice to show the user something -
-often, spinning icons are used, but even just a simple 'Loading...' is enough
+While content is being fetched, it would be nice to show the user something.
+Spinning icons are often used, but even just a simple 'Loading...' is enough
 to show to the user that content is on the way.
 
 How might we use the value of `this.props.loading` to implement a loading
